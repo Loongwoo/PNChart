@@ -94,8 +94,9 @@
         NSInteger num = _yLabelNum + 1;
 
         while (num > 0) {
+            NSInteger y = (NSInteger) (_chartCavanHeight + _chartMarginTop - index * yStepHeight - _yLabelHeight / 2);
             CGRect labelFrame = CGRectMake(0.0,
-                    (NSInteger) (_chartCavanHeight + _chartMarginTop - index * yStepHeight),
+                    y,
                     (CGFloat) ((NSInteger) _chartMarginLeft * 0.9),
                     (NSInteger) _yLabelHeight);
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:labelFrame];
@@ -143,9 +144,9 @@
         for (int index = 0; index < yLabels.count; index++) {
             labelText = yLabels[(NSUInteger) index];
 
-            NSInteger y = (NSInteger) (_chartCavanHeight + _chartMarginTop - index * yStepHeight);
+            NSInteger y = (NSInteger) (_chartCavanHeight + _chartMarginTop - index * yStepHeight - _yLabelHeight / 2);
 
-            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0.0, y - (NSInteger) _yLabelHeight / 2, (CGFloat) ((NSInteger) _chartMarginLeft * 0.9), (NSInteger) _yLabelHeight)];
+            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0.0, y, (CGFloat) ((NSInteger) _chartMarginLeft * 0.9), (NSInteger) _yLabelHeight)];
             [label setTextAlignment:NSTextAlignmentRight];
             label.text = labelText;
             [self setCustomStyleForYLabel:label];

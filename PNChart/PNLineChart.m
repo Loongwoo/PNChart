@@ -772,6 +772,10 @@ andProgressLinePathsColors:(NSMutableArray *)progressLinePathsColors {
             // draw x axis separator
             CGPoint point;
             for (NSUInteger i = 0; i < [self.xLabels count]; i++) {
+                NSString *xlabel = self.xLabels[i];
+                if (xlabel.length == 0) {
+                    continue;
+                }
                 point = CGPointMake(2 * _chartMarginLeft + (i * _xLabelWidth), _chartMarginBottom + _chartCavanHeight);
                 CGContextMoveToPoint(ctx, point.x, point.y - 2);
                 CGContextAddLineToPoint(ctx, point.x, point.y);

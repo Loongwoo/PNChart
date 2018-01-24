@@ -251,7 +251,9 @@
 
     for (NSUInteger p = 0; p < _pathPoints.count; p++) {
         NSArray *linePointsArray = _endPointsOfPath[p];
-
+        if (linePointsArray.count == 0) {
+            continue;
+        }
         for (NSUInteger i = 0; i < (int) linePointsArray.count - 1; i += 2) {
             CGPoint p1 = [linePointsArray[i] CGPointValue];
             CGPoint p2 = [linePointsArray[i + 1] CGPointValue];
@@ -287,7 +289,9 @@
 
     for (NSUInteger p = 0; p < _pathPoints.count; p++) {
         NSArray *linePointsArray = _pathPoints[p];
-
+        if (linePointsArray.count == 0) {
+            continue;
+        }
         for (NSUInteger i = 0; i < (int) linePointsArray.count - 1; i += 1) {
             CGPoint p1 = [linePointsArray[i] CGPointValue];
             CGPoint p2 = [linePointsArray[i + 1] CGPointValue];

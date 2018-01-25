@@ -197,11 +197,15 @@
     if (_showLabel) {
         for (NSUInteger index = 0; index < xLabels.count; index++) {
             labelText = xLabels[index];
+            if (labelText.length == 0) {
+                continue;
+            }
 
-            NSInteger x = (NSInteger) (index * _xLabelWidth + _chartMarginLeft + 5);
+            CGFloat lastWidth = MAX(_xLabelWidth, _xLabelWidthMin);
+            NSInteger x = (NSInteger) (index * _xLabelWidth + _chartMarginLeft + 10 - lastWidth / 2.0);
             NSInteger y = (NSInteger) (_chartMarginBottom + _chartCavanHeight);
 
-            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];
+            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, lastWidth, (NSInteger) _chartMarginBottom)];
             [label setTextAlignment:NSTextAlignmentCenter];
             label.text = labelText;
             [self setCustomStyleForXLabel:label];
@@ -763,6 +767,7 @@ andProgressLinePathsColors:(NSMutableArray *)progressLinePathsColors {
         CGContextAddLineToPoint(ctx, xAxisWidth, yAxisHeight);
         CGContextStrokePath(ctx);
 
+        /*
         // draw y axis arrow
         CGContextMoveToPoint(ctx, _chartMarginBottom + yAxisOffset - 3, 6);
         CGContextAddLineToPoint(ctx, _chartMarginBottom + yAxisOffset, 0);
@@ -774,6 +779,7 @@ andProgressLinePathsColors:(NSMutableArray *)progressLinePathsColors {
         CGContextAddLineToPoint(ctx, xAxisWidth, yAxisHeight);
         CGContextAddLineToPoint(ctx, xAxisWidth - 6, yAxisHeight + 3);
         CGContextStrokePath(ctx);
+        */
 
         if (self.showLabel) {
 
@@ -975,6 +981,7 @@ andProgressLinePathsColors:(NSMutableArray *)progressLinePathsColors {
     _yLabelHeight = [[[[PNChartLabel alloc] init] font] pointSize];
 
 //    _chartMargin = 40;
+    _xLabelWidthMin = 30.0;
 
     _chartMarginLeft = 25.0;
     _chartMarginRight = 25.0;

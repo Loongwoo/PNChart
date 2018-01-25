@@ -33,6 +33,7 @@
 @property (nonatomic) NSMutableArray *yChartLabels;
 
 @property (nonatomic) CGFloat xLabelWidth;
+@property (nonatomic) CGFloat xLabelWidthMin;
 @property (nonatomic) UIFont *xLabelFont;
 @property (nonatomic) UIColor *xLabelColor;
 @property (nonatomic) CGFloat yValueMax;
